@@ -1,27 +1,37 @@
 import {useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addProduct } from '../slices/cartSlice';
 
-export default function ProductItem(){
-    const [image, setImage] = useState(`url("https://react-shopping-cart-67954.firebaseapp.com/static/media/8552515751438644-1-product.b6128dd1df3de552cf1b.webp")`)
+export default function ProductItem(props){
+    const [product, setProduct] = useState({...props.product})
+    const getBackground = (url) => {
+        return "URL("+url+")";
+    }
+    const [image, setImage] = useState(getBackground(product.frontImage));
     const imageStyle = {
         backgroundImage: image
     };
+    const dispatch = useDispatch();
     const handleMouseEnter = () => {
-        setImage(`url("https://react-shopping-cart-67954.firebaseapp.com/static/media/8552515751438644-2-product.6df01508d4cdad361b39.webp")`)
+        setImage(getBackground(product.backImage))
     };
     const handleMouseLeave = () => {
-        setImage(`url("https://react-shopping-cart-67954.firebaseapp.com/static/media/8552515751438644-1-product.b6128dd1df3de552cf1b.webp")`)
+        setImage(getBackground(product.frontImage))
     };
+    const handleAdd = () => {
+        dispatch(addProduct(product));
+    }
     return (
         <div className="product-item">
             <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={imageStyle} className="image-container"></div>
             <div className="product-name">
-                <p>Cropped Stay Groovy off white</p>
+                <p>{product.name}</p>
             </div>
             <div className="product-price">
-                <b>$49.99</b>
+                <b>${product.price}</b>
             </div>
             <div className="buy-container">
-                <button>Add to cart</button>
+                <button onClick={handleAdd}>Add to cart</button>
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-body {
+  body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -11,6 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.header {
+  height: 100px;
+  width: 100%;
+}
 
 .main {
   display: flex;
@@ -22,10 +26,14 @@ code {
   margin-left: 20px;
 }
 
+#product-count {
+  padding-left: 20px;
+}
+
 .product-list {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  width: 1000px;
+  width: 950px;
 }
 
 .product-item {
@@ -39,7 +47,7 @@ code {
 }
 
 .image-container {
-  height: 400px;
+  height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -57,3 +65,118 @@ code {
   cursor: pointer;
   transition: 0.3s;
 }
+.sizes {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+.size-option {
+  display: block;
+  width: 36px;
+  height: 36px;
+  background-color: #ECECEC;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 36px;
+  box-sizing: border-box; 
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin: 5px;
+}
+.size-option:hover {
+  border: 1px solid black;
+}
+.size-option >a {
+  text-decoration: none;
+  color: black;
+  font-size: 12px;
+}
+
+.cart-sidebar {
+  height: 100%;
+  width: 550px;
+  position: fixed;
+  top: 0;
+  display: flex;
+}
+
+.cart-sidebar.open {
+  transition: 0.3s;
+  right: 0;
+}
+
+.cart-sidebar.closed {
+  transition: 0.3s;
+  right: -500px;
+}
+
+.close-cart-sidebar {
+  width: 50px;
+  height: 50px;
+  background-color: #0C0B10;
+  cursor: pointer;
+  font-size: 25px ;
+  line-height: 50px;
+  color: white;
+  position: relative;
+}
+
+.cart-sidebar-main {
+  height: 100%;
+  width: 500px;
+  background-color: #0C0B10;
+  color: white;
+}
+
+.product-count{
+  font-size: 12px;
+  font-weight: bold;
+  display: block;
+  position: fixed;
+  top: 35px;
+  right: 10px;
+  background-color: #EABF00;
+  color: black;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 10px;
+  position: absolute;
+}
+
+.cart-sidebar-header {
+  height: 180px;
+  text-align: center;
+  line-height: 180px;
+  width: 100%;
+  font-size: 25px ;
+}
+
+.cart-sidebar-header > p {
+  position: relative;
+}
+
+.cart-sidebar-header > p > i{
+  right: 260px;
+  top: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
