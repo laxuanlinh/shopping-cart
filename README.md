@@ -1,4 +1,4 @@
 # React shopping cart project
 
-Nothing special going on here
+Just a side project to review my React knowledge
 
