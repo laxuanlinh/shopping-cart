@@ -19,8 +19,9 @@ export const cartSlice = createSlice({
 			}
 		},
 		removeProduct: (state, product) => {
-			const index = state.cartProducts.indexOf(product);
-			if(index > -1 && state.cartProducts[index]==1){
+			const existingProducts = JSON.parse(JSON.stringify(state.cartProducts));
+			const index = existingProducts.findIndex(p=>p.id == product.payload.id);
+			if(state.cartProducts[index].count==1){
 				state.cartProducts.splice(index, 1);
 			} else {
 				state.cartProducts[index].count = state.cartProducts[index].count - 1;
