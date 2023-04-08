@@ -6,25 +6,18 @@ import CartProductList from './CartProductList';
 
 export default function CartSidebar(){
 	const [className, setClassName] = useState("cart-sidebar closed");
+	const cartProducts = useSelector((state) => state.cart.cartProducts);
 	const sum = (total, product) => total+=product.count;
-	const cartProductCount = useSelector((state) => state.cart.cartProducts.reduce(sum, 0));
+	const cartProductCount = useMemo(()=> cartProducts.reduce(sum, 0), [cartProducts]);
 	const sumPrice = (total, product) => total+=product.count*product.price;
-	const totalPrice = useSelector((state) => state.cart.cartProducts.reduce(sumPrice, 0));
+	const totalPrice = useMemo(() => cartProducts.reduce(sumPrice, 0), [cartProducts]);
 	const toggleSidebar = () => {
-		if (className === "cart-sidebar closed"){
-			setClassName("cart-sidebar open");
-		} else {
-			setClassName("cart-sidebar closed");
-		}
+		setClassName("cart-sidebar "+(className === "cart-sidebar closed" ? "open" : "closed"))
 	};
-	let button;
-	let closeLabel;
-	let innerLabel;
-	useMemo(()=>{
-		button = className === "cart-sidebar closed" ? <FontAwesomeIcon icon={faCartShopping} /> : <FontAwesomeIcon icon={faTimes} />;
-		closeLabel = className === "cart-sidebar closed" && cartProductCount > 0 ? <i className="product-count">{cartProductCount}</i> : null;
-		innerLabel = cartProductCount > 0 ? <i className="product-count">{cartProductCount}</i> : null;
-	}, [className, cartProductCount, totalPrice])
+	const button = useMemo(() => className === "cart-sidebar closed" ? <FontAwesomeIcon icon={faCartShopping} /> : <FontAwesomeIcon icon={faTimes} />, [className]);
+	const closeLabel = useMemo(() => className === "cart-sidebar closed" && cartProductCount > 0 ? <i className="product-count">{cartProductCount}</i> : null, [className, cartProductCount]);
+	const innerLabel = useMemo(() => cartProductCount > 0 ? <i className="product-count">{cartProductCount}</i> : null, [className, cartProductCount]);
+	const MemorizedCartProducts = useMemo(() => <CartProductList />, [])
 	return (
 		<div className={className}>
 			<div className="close-cart-sidebar" onClick={toggleSidebar}>
@@ -39,8 +32,12 @@ export default function CartSidebar(){
 					{innerLabel}
 					</p>
 				</div>
-				<CartProductList />
-				{totalPrice.toFixed(2)}
+				{MemorizedCartProducts}
+				<div className="total-price">
+					<p>Total price: ${totalPrice.toFixed(2)}</p>
+					<button>CHECK OUT</button>	
+				</div>
+				
 			</div>
 		</div>
 	)	

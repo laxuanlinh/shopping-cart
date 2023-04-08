@@ -148,9 +148,9 @@ code {
 }
 
 .cart-sidebar-header {
-  height: 180px;
+  height: 100px;
   text-align: center;
-  line-height: 180px;
+  line-height: 100px;
   width: 100%;
   font-size: 25px ;
 }
@@ -161,7 +161,7 @@ code {
 
 .cart-sidebar-header > p > i{
   right: 260px;
-  top: 100px;
+  top: 50px;
 }
 
 .cart-product-list {
@@ -238,6 +238,22 @@ code {
 
 .cart-product-increase > button.decrease {
   background-color: grey;
+}
+
+.total-price {
+  height: 100px;
+  width: 100%;
+  text-align: center;
+}
+.total-price > button{
+  height: 50px;
+  width: 200px;
+  font-size: 20px;
+  color: white;
+  background-color: #EABF00;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 

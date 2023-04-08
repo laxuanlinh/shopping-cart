@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useMemo} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { removeProduct, addProduct } from '../slices/cartSlice';
@@ -16,9 +16,9 @@ export default function CartProductItem(props) {
 	const handleIncrease = () => {
 		dispatch(addProduct(product));
 	}
-	return (
-		<div className="cart-product-item">
+	const memorizedCartItem = useMemo(() => <div className="cart-product-item">
 			<div className="cart-product-image-container">
+				{console.log("being rendered "+product.id)}
 				<img src={product.frontImage} />
 			</div>
 			<div className="cart-product-info-container">
@@ -39,6 +39,8 @@ export default function CartProductItem(props) {
 					<button className="increase" onClick={handleIncrease}>+</button>
 				</div>
 			</div>
-		</div>
+		</div>, [product])
+	return (
+		<div>{memorizedCartItem}</div>
 	)
 }
