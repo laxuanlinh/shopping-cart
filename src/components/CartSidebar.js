@@ -1,4 +1,4 @@
-import {useState, useMemo, useEffect } from "react";
+import {useState, useMemo, useEffect, useRef } from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faCartShopping, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from 'react-redux';
@@ -18,8 +18,13 @@ export default function CartSidebar(){
 	const closeLabel = useMemo(() => className === "cart-sidebar closed" && cartProductCount > 0 ? <i className="product-count">{cartProductCount}</i> : null, [className, cartProductCount]);
 	const innerLabel = useMemo(() => cartProductCount > 0 ? <i className="product-count">{cartProductCount}</i> : null, [className, cartProductCount]);
 	const MemorizedCartProducts = useMemo(() => <CartProductList />, [])
+	const divRef = useRef("something else");
+	console.log(divRef);
+	useEffect(()=>{
+		console.log(divRef);
+	})
 	return (
-		<div className={className}>
+		<div className={className} ref={divRef}>
 			<div className="close-cart-sidebar" onClick={toggleSidebar}>
 				{button}
 				{closeLabel}
@@ -36,8 +41,7 @@ export default function CartSidebar(){
 				<div className="total-price">
 					<p>Total price: ${totalPrice.toFixed(2)}</p>
 					<button>CHECK OUT</button>	
-				</div>
-				
+				</div>	
 			</div>
 		</div>
 	)	

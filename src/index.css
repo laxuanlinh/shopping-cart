@@ -256,9 +256,24 @@ code {
   font-weight: bold;
 }
 
+.notification {
+  width: 270px;
+  line-height: 20px;
+  text-align: center;
+  font-size: 20px;
+  position: fixed;
+  bottom: 100px;
+  left: 100px;
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid;
+  transition: 0.5s;
+  opacity: 100%;
+}
 
-
-
+.notification.hide {
+  opacity: 0%;
+}
 
 
 

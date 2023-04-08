@@ -18,7 +18,6 @@ export default function CartProductItem(props) {
 	}
 	const memorizedCartItem = useMemo(() => <div className="cart-product-item">
 			<div className="cart-product-image-container">
-				{console.log("being rendered "+product.id)}
 				<img src={product.frontImage} />
 			</div>
 			<div className="cart-product-info-container">
